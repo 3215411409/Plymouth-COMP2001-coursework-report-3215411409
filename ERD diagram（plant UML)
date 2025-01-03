@@ -1,0 +1,31 @@
+@startuml
+entity "User" as U {
+    *id : int
+    username : varchar
+    email : varchar
+    password_hash : varchar
+}
+
+entity "Trail" as T {
+    *id : int
+    name : varchar
+    description : varchar
+    creation_time : datetime
+    last_update_time : datetime
+    --
+    *user_id : int
+}
+
+entity "LocationPoint" as LP {
+    *id : int
+    longitude : double
+    latitude : double
+    altitude : double
+    terrain_type : varchar
+    --
+    *trail_id : int
+}
+
+U ||--o{ T : "owns"
+T ||--o{ LP : "contains"
+@enduml
