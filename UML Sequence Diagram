@@ -1,0 +1,22 @@
+@startuml
+title Create Trail Sequence Diagram
+
+actor User as U
+participant AndroidDevice as AD
+participant TrailService as TS
+participant Database as DB
+participant AuthenticatorAPI as API
+
+U -> AD: Enter trail details (name, description) and click create
+AD -> TS: Send create trail request with details and user ID
+TS -> API: Verify user identity using user ID
+API -> TS: Return verification result (success or failure)
+alt User is verified
+    TS -> DB: Begin transaction
+    TS -> DB: Insert new trail record (name, description, creation time, user ID)
+    TS -> DB: Commit transaction
+    TS -> AD: Return success message
+else User is not verified
+    TS -> AD: Return error message (user not found or unauthorized)
+end
+@enduml
