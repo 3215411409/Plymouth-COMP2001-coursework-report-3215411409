@@ -1,0 +1,32 @@
+@startuml
+class Trail {
+    - name : String
+    - description : String
+    - creationTime : Date
+    - lastUpdateTime : Date
+    + addLocationPoint(locationPoint : LocationPoint) : void
+    + getLocationPoints() : List<LocationPoint>
+    + editTrailInfo(newName : String, newDescription : String) : void
+    + deleteTrail() : void
+}
+
+class LocationPoint {
+    - longitude : double
+    - latitude : double
+    - altitude : double
+    - terrainType : String
+}
+
+class User {
+    - username : String
+    - email : String
+    - passwordHash : String
+    + createTrail(trail : Trail) : void
+    + viewTrails() : List<Trail>
+    + editTrail(trail : Trail) : void
+    + deleteTrail(trail : Trail) : void
+}
+
+Trail "1" *-- "0..*" LocationPoint : contains
+Trail "1" *-- "1" User : owned by
+@enduml
