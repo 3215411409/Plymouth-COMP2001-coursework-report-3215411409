@@ -1,0 +1,7 @@
+CREATE TABLE Locations (
+    LocationID INT PRIMARY KEY IDENTITY(1,1),
+    TrailID INT,
+    Longitude DECIMAL(10, 6),
+    Latitude DECIMAL(10, 6),
+    FOREIGN KEY (TrailID) REFERENCES Trails(TrailID)
+);
