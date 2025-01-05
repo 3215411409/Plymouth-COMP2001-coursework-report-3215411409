@@ -1,0 +1,21 @@
+# Gets routes for all trails
+@app.route('/trails', methods=['GET'])
+@token_required
+def get_trails():
+    trails = session.query(Trail).all()
+    trail_list = []
+    for trail in trails:
+        trail_data = {
+            'id': trail.id,
+            'name': trail.name,
+            'description': trail.description,
+            'creation_time': trail.creation_time.isoformat(),
+            'last_update_time': trail.last_update_time.isoformat(),
+            'user': {
+                'id': trail.user.id,
+                'username': trail.user.username,
+                'email': trail.user.email
+            }
+        }
+        trail_list.append(trail_data)
+    return jsonify(trail_list)
