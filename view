@@ -1,0 +1,12 @@
+CREATE VIEW TrailLocationView AS
+SELECT 
+    t.TrailName,
+    t.Description,
+    l.Longitude,
+    l.Latitude
+FROM 
+    Trails t
+JOIN 
+    Locations l ON t.TrailID = l.TrailID;
+
+SELECT * FROM CW1.TrailLocationView;
