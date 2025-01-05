@@ -1,0 +1,5 @@
+CREATE TABLE Trails (
+    TrailID INT PRIMARY KEY IDENTITY(1,1),
+    TrailName NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(255)
+);
